@@ -1,0 +1,44 @@
+html{ 
+	background:black;
+	color: #dde3ed;
+	font-family: "Courier New", monospace;
+}
+a { color: #e7c5fc;}
+
+.intro{
+	margin: auto;
+	width:25%;	
+	text-align:center;
+}
+.welcome{
+	margin: auto;
+	width:25%;
+	text-align:center;
+}
+.button{
+	text-align:right;
+	margin:auto;
+	width:25%;
+}
+.links{
+	margin: auto;
+	width: 25%;
+	text-align:center;
+}
+.log{
+	margin: auto;
+	width: 25%
+}
+
+.about{
+	margin: auto;
+	width: 25%
+}
+.contact{
+	margin: auto;
+	width: 25%
+}
+.projects{
+	margin: auto;
+	width: 25%
+}
