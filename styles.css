@@ -7,38 +7,36 @@ a { color: #e7c5fc;}
 
 .intro{
 	margin: auto;
-	width:25%;	
+	width:35%;	
 	text-align:center;
 }
 .welcome{
-	margin: auto;
-	width:25%;
 	text-align:center;
 }
 .button{
 	text-align:right;
 	margin:auto;
-	width:25%;
+	width:35%;
 }
 .links{
 	margin: auto;
-	width: 25%;
+	width: 35%;
 	text-align:center;
 }
 .log{
 	margin: auto;
-	width: 25%
+	width: 35%
 }
 
 .about{
 	margin: auto;
-	width: 25%
+	width: 35%
 }
 .contact{
 	margin: auto;
-	width: 25%
+	width: 35%
 }
 .projects{
 	margin: auto;
-	width: 25%
+	width: 35%
 }
