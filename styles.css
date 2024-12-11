@@ -7,7 +7,7 @@ a { color: #e7c5fc;}
 
 .intro{
 	margin: auto;
-	width:40%;	
+	width:50%;	
 	text-align:center;
 }
 .welcome{
@@ -16,27 +16,27 @@ a { color: #e7c5fc;}
 .button{
 	text-align:right;
 	margin:auto;
-	width:40%;
+	width:50%;
 }
 .links{
 	margin: auto;
-	width: 40%;
+	width: 50%;
 	text-align:center;
 }
 .log{
 	margin: auto;
-	width: 40%
+	width: 50%
 }
 
 .about{
 	margin: auto;
-	width: 40%
+	width: 50%
 }
 .contact{
 	margin: auto;
-	width: 40%
+	width: 50%
 }
 .projects{
 	margin: auto;
-	width: 40%
+	width: 50%
 }
