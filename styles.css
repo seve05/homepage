@@ -1,29 +1,93 @@
-html{ 
+body{ 
 	background:black;
 	color: #dde3ed;
 	font-family: "Courier New", monospace;
 }
-a { color: #e7c5fc;}
+
+.dark-mode{
+	background: #fcfaf0 ;
+	color: black;
+	a{
+	color:black;
+	transition-duration:0.1s;
+	}
+	a:hover
+	{
+	background-color:black;
+	color: #fcfaf0 ;
+
+	}
+
+	#uniqueButton{
+        transition-duration: 0.1s;
+        color:black;
+        background-color: #fcfaf0 ;
+	}
+	#uniqueButton:hover{
+        background-color:black;
+        color: #fcfaf0 ;
+	}
+	
+	#firsthr, #secondhr, #lasthr{
+	border:1px solid #111214;
+
+}
+	
+
+}
+
+a { 
+	color: #dde3ed;
+	text-decoration:none;
+	transition-duration:0.1s;
+}
+a:hover{
+	background-color:#dde3ed;
+	color:black;
+}
+a:active{
+}
 
 .intro{
 	margin: auto;
-	width:50%;	
+	width: 50%;
 	text-align:center;
 }
 .welcome{
 	text-align:center;
 }
-.button{
-	text-align:right;
-	margin:auto;
-	width:50%;
+
+#firsthr, #secondhr, #lasthr{
+border:1px solid #65686d;
+
 }
+
+.placeholder{
+position:relative;
+
+}
+#uniqueButton{
+	position:absolute;
+	transition-duration: 0.1s;	
+	color:#dde3ed;
+	background-color: black;
+	margin:auto;
+	border:none;
+	width:47px;
+	left:77%;
+	top:40%;
+}
+#uniqueButton:hover{
+	background-color:#dde3ed;
+	color:black;
+}
+
+
 .links{
 	margin: auto;
 	width: 50%;
 	text-align:center;
-}
-.log{
+}.log{
 	margin: auto;
 	width: 50%
 }

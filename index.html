@@ -2,34 +2,51 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="./styles.css"/>
 		<title>Severin Richter's Website</title>
 	</head>
 
 <body>
+<div class="placeholder">
 <br/>
+<div class ="buttonSytle">
+	<button onclick ="darkmodeFun()" id="uniqueButton" type="button">dark|light</button>
+</div>
+</div>
 <br/>
 <div class = "intro">
 	<h1>Severin Richter's Website</h1>
 </div>
 <div class = "links">	
-	<hr/>
+	<hr id="firsthr"/>
 	<a href="./public/projects.html">Projects</a>
 	<a href="./public/contact.html">Contact</a>
 </div>
 <div class = "log">
-	<hr/>
+	<hr id ="secondhr"/>
 	<h3>Tiny Log</h3>
+	<h4>12/12/24</h4>
+		<p> - More web-dev to be able to deploy services over the web. CSS. 2:15h - </p>
 	<h4>10/12/24</h4>
-                <p> - More web-dev after work to be able to deploy services over the web. html5,CSS. 0:34h - </p>
+		<p> - More web-dev after work to be able to deploy services over the web. html5,CSS. 0:34h - </p>
 	<h4>09/12/24</h4>
 		<p> - Some more web-dev after work to be able to deploy services over the web, html5,CSS. 1:27h - </p>
 	<h4>08/12/24</h4>
 		<p> - Studying more web-dev to be able to deploy services over the web, html5. 2:38h - </p>
 <br/>
-<hr/>
+<hr id="lasthr"/>
 	<a href="./public/about.html">If you're looking for answers</a>
 </div>	
-</body>
-</html>
+
+
+<script>
+function darkmodeFun() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
+
+
+
+</body></html>
