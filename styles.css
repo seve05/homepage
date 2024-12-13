@@ -22,6 +22,7 @@ body{
         transition-duration: 0.1s;
         color:black;
         background-color: #fcfaf0 ;
+	
 	}
 	#uniqueButton:hover{
         background-color:black;
@@ -73,7 +74,7 @@ position:relative;
 	background-color: black;
 	margin:auto;
 	border:none;
-	width:60px;
+	width 60px;
 	left:77%;
 	top:40%;
 }
@@ -103,4 +104,26 @@ position:relative;
 .projects{
 	margin: auto;
 	width: 50%
+}
+
+#stone{
+	max-width:40%;
+	float:left;
+	transition-duration:1s;	
+
+}
+#stone:hover{
+
+	max-width:100%;
+	float:left;
+	transition-duration:1s;
+
+}
+.microscope{
+	margin:auto;
+	width:50%;
+	font-size:18px;
+}
+#mic{
+	font-size:22px;
 }
