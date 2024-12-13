@@ -8,10 +8,17 @@
 
 	</head>
 <body>
+<div class="placeholder">
+<br/>
+<div class ="buttonSytle">
+        <button onclick ="darkmodeFun()" id="uniqueButton" type="button">dark|light</button>
+</div>
+</div>
+	
 <br/>
 <br/>
 <div class="projects">	
-<a href="../index.html">back</a>
+<a style="font-size:16px;"href="../index.html">back</a>
 </div>
 <div class="microscope">
 <p id="mic"> Microscopy </p>
@@ -21,4 +28,11 @@
 <hr style="width:50%;clear:left;"/>
 
 </body>
+<script>
+function darkmodeFun() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
+
 </html>

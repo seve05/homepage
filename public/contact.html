@@ -8,12 +8,25 @@
 
 	</head>
 <body>
+<div class="placeholder">
+<br/>
+<div class ="buttonSytle">
+        <button onclick ="darkmodeFun()" id="uniqueButton" type="button">dark|light</button>
+</div>
+</div>
+
 <br/>
 <br/>
 <div class="contact">
-<a href="../index.html">back</a>
+<a style="font-size:16px;"href="../index.html">back</a>
 <h2> Contact Me </h2>
 <a href="email@provider.com">email@provider.com </a>
 </div>
+<script>
+function darkmodeFun() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
 </body>
 </html>

@@ -8,13 +8,26 @@
         	
 	</head>
 <body>
+	<div class="placeholder">
+<br/>
+<div class ="buttonSytle">
+<button onclick ="darkmodeFun()" id="uniqueButton" type="button">dark|light</button>
+</div>
+</div>
+
 <br/>
 <br/>
 <div class="about">	
-<a href="../index.html">back</a>
+<a style="font-size:16px;" href="../index.html">back</a>
 <h2> What is this page about:</h2>
 <p>The main goal here is to keep a semi-public record of what I am doing, the time put in and application/projects that interest me.<br/>After all: was your time really spent well, if your ambitions amount to nothing ?
 </p>
 </div>
+<script>
+function darkmodeFun() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
 </body>
 </html>
