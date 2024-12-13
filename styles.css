@@ -105,7 +105,9 @@ position:relative;
 	margin: auto;
 	width: 50%
 }
-
+#stone_text{
+	float:left;
+}
 #stone{
 	max-width:40%;
 	float:left;
