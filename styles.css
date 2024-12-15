@@ -7,30 +7,37 @@ body{
 h1{
 	letter-spacing:4px;
 }
+
+#head{
+	max-width:100%;
+	margin:auto;
+}
+
 .dark-mode{
 	background: #fcfaf0 ;
 	color: black;
 	a{
-	color:black;
+	color:#fcfaf0;
+	background:black;
 	transition-duration:0.1s;
 	}
 	a:hover
 	{
-	background-color:black;
-	color: #fcfaf0 ;
+	background-color:#fcfaf0;
+	color:black;
 
 	}
 
 	#uniqueButton{
         transition-duration: 0.1s;
-        color:black;
-        background-color: #fcfaf0 ;
-	letter-spacing:2px;	
+        color:#fcfaf0;
+        background-color:black;
+	letter-spacing:4px;	
 
 	}
 	#uniqueButton:hover{
-        background-color:black;
-        color: #fcfaf0 ;
+        background-color:#fcfaf0;
+        color: black;
 	}
 	
 	#firsthr, #secondhr, #lasthr{
@@ -41,16 +48,22 @@ h1{
 
 }
 
+#TL_ueberschrift{
+margin:auto;
+width:50%;
+
+}
 a {	
         display:inline-block;	
-	color: #dde3ed;
+	color:black;
+	background:white;
 	text-decoration:none;
 	transition-duration:0.1s;
-	letter-spacing:1px;	
+	letter-spacing:2px;	
 }
 a:hover{
-	background-color:#dde3ed;
-	color:black;
+	background-color:black;
+	color:white;
 }
 a:active{
 }
@@ -77,8 +90,8 @@ position:relative;
 #uniqueButton{
 	position:absolute;
 	transition-duration: 0.1s;	
-	color:#dde3ed;
-	background-color: black;
+	color:black;
+	background-color: white;
 	margin:auto;
 	border:none;
 	width 60px;
@@ -86,8 +99,8 @@ position:relative;
 	top:40%;
 }
 #uniqueButton:hover{
-	background-color:#dde3ed;
-	color:black;
+	background-color:black;
+	color:white;
 }
 
 
@@ -142,6 +155,216 @@ position:relative;
 	width:50%;
 	font-size:18px;
 }
+
+#prohr{
+	margin:auto;
+	width:50%;
+	clear:left;
+}
+
 #mic{
 	font-size:22px;
+}
+
+#butwhy{
+	left:25%;
+	margin:auto; 
+	width:auto;
+       	text-align:center;	
+}
+.flexy{
+	display:flex;
+	width:25%;
+	margin:auto;
+}
+#foot{	
+	font-size:12px;
+	margin-left:25%;
+}
+
+	
+@media (max-width:1000px){
+
+.projects{
+        margin: auto;
+	width: 80%;
+}
+#stone_text{
+        float:left;
+}
+#stone{
+        max-width: 80%;
+        float:left;
+        transition-duration:0.5s;
+
+}
+#stone:hover{
+
+        max-width:100%;
+        float:left;
+        transition-duration:1;
+
+}
+
+#imge{	
+	max-width:80%
+}	
+.microscope{
+        margin:auto;
+        width:80%;
+        font-size:18px;
+	bottom:10%;
+}
+
+#prohr{
+	margin:auto;
+	width:80%;
+	clear:left;
+}
+ 
+.intro{
+	margin: auto;
+	width: 80%;
+	text-align:center;
+}
+
+#firsthr,#secondhr, #lasthr{
+	margin:auto;
+	width:80%;
+}
+
+
+.links{
+	margin: auto;
+	width: 80%;
+}
+
+
+
+.log{
+	margin: auto;
+	width: 80%;
+}
+
+.about{
+	margin: auto;
+	width: 80%
+}
+.contact{
+	margin: auto;
+	width: 80%
+}
+.projects{
+	margin: auto;
+	width: 80%
+}
+
+#TL_ueberschrift{
+	width:80%;
+	margin:auto;
+}
+
+#butwhy{
+	left:10%;
+	float:left;
+}
+
+
+#foot{
+	margin-left:10%;
+		
+}
+
+}
+
+@media (min-width:1921px){
+
+.projects{
+        margin: auto;
+	width: 40%;
+}
+
+#imge{
+	max-width:40%
+}	
+#stone_text{
+        float:left;
+}
+#stone{
+        max-width: 40%;
+        float:left;
+        transition-duration:0.5s;
+
+}
+#stone:hover{
+
+        max-width:100%;
+        float:left;
+        transition-duration:1;
+
+}
+.microscope{
+        margin:auto;
+        width:40%;
+        font-size:18px;
+	bottom:10%;
+}
+
+#prohr{
+	margin:auto;
+	width:40%;
+	clear:left;
+}
+ 
+.intro{
+	margin: auto;
+	width: 40%;
+	text-align:center;
+}
+
+#firsthr,#secondhr, #lasthr{
+	margin:auto;
+	width:40%;
+}
+
+
+.links{
+	margin: auto;
+	width: 40%;
+}
+
+
+
+.log{
+	margin: auto;
+	width: 40%;
+}
+
+.about{
+	margin: auto;
+	width: 40%
+}
+.contact{
+	margin: auto;
+	width: 40%
+}
+.projects{
+	margin: auto;
+	width: 40%
+}
+
+#TL_ueberschrift{
+	width:40%;
+	margin:auto;
+}
+
+#butwhy{
+	left:30%;
+	float:left;
+}
+
+
+#foot{
+	margin-left:30%;
+		
 }
