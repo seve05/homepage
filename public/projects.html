@@ -7,7 +7,7 @@
  		<link rel="stylesheet" href="../styles.css"/>
 
 	</head>
-<body>
+<body> 
 <div class="placeholder">
 <br/>
 <div class ="buttonSytle">
@@ -21,21 +21,31 @@
 <a style="font-size:16px;"href="../index.html">back</a>
 </div>
 <div class="microscope">
-<p id="mic"> Microscopy (This is just a placeholder)</p>
-<img id="stone" src=".././img/image.jpg" alt="microscopy">
-<p id="stone_text"> A piece of what could be metal growing out of some "ancient" jade from the Hongshan culture. It looks like it might have been there organically and the position isn't near where you would expect metal shavings from utilizing modern tools. I have many more of these jade artifacts and they seem to be genuine because the price to material ratio is way too low to warrant any human labour and the imperfections are too obvious to indicate machining. In China it is common practice to throw away or sell those items, which can usually be found on burial grounds for cheap to circumvent the construction/private property site becoming nationalized upon discovery of historical artifacts.
+<p id="mic">[Flux1.schnell]</p>
 </div>
 <hr id="prohr" />
+<br/>
 
+<form id="form_field">Enter prompt:<textarea></textarea></form>
+<br/>
+<form id="form_field">placeholder<input id="textbox"></input></form>
+<form id="form_field">placeholder<input id="textbox"></input></form>
+<br/>
 <footer id ="foot">© 2024 Severin Richter. All rights reserved.</footer>
 </body>
+<!--script tags need to be placed after the elements that should be changed (most best at the very bottom)the last html closing tag because
+we need the html to load all objects first before we modify those with the JS code, CSS is the opposite-->
+<script src="./ai_serv.js"></script>
+
 <script>
 function darkmodeFun() {
    var element = document.body;
    element.classList.toggle("dark-mode");
 }
+
 </script>
 <script>
-window.onload = darkmodeFun();
+	<!--window.onload = darkmodeFun();-->
 </script>
+
 </html>

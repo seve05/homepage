@@ -13,6 +13,19 @@ h1{
 	margin:auto;
 }
 
+#textbox{
+	max-width:50%;
+	margin:auto;
+	width:;
+	border:1px solid black;
+}
+
+#form_field{
+	max-width:50%;
+	width:150px;
+	margin-left:25%;	
+}
+
 .dark-mode{
 	background: #fcfaf0 ;
 	color: black;
