@@ -20,7 +20,7 @@ h1{
 	border:1px solid black;
 }
 
-#form_field{
+.form_field{
 	max-width:50%;
 	width:150px;
 	margin-left:25%;	
@@ -198,8 +198,15 @@ position:relative;
 	
 @media (max-width:1000px){
 
+
+.form_field{
+	max-width:80%;
+	width:150px;
+	margin-left:10%;	
+}
+	
 .projects{
-        margin: auto;
+	margin: auto;
 	width: 80%;
 }
 #stone_text{
@@ -292,6 +299,11 @@ position:relative;
 
 @media (min-width:1921px){
 
+.form_field{
+	max-width:40%;
+	width:150px;
+	margin-left:30%;	
+}
 .projects{
         margin: auto;
 	width: 40%;
