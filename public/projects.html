@@ -3,7 +3,7 @@
         <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>[Projects]</title>
+                <title>Projects</title>
  		<link rel="stylesheet" href="../styles.css"/>
 
 	</head>
@@ -21,21 +21,24 @@
 <a style="font-size:16px;"href="../index.html">back</a>
 </div>
 <div class="microscope">
-<h2 id="mic">[Flux1.schnell]</h2>
+<p id="mic">[Flux1.schnell]</p>
 </div>
 <hr id="prohr" />
 <br/>
 
-<form id="form_field">Enter prompt:<textarea></textarea></form>
+<form class="form_field" id="prompt_text">Enter prompt:<textarea></textarea></form>
 <br/>
-<form id="form_field">inference_steps:<input id="textbox"></input></form>
-<form id="form_field">manual_seed:<input id="textbox"></input></form>
+<form class="form_field" id="inference_step">inference_steps:<input id="textbox"></input></form>
+<form class="form_field" id="manual_seed"> manual_seed:<input id="textbox"></input></form>
+<br/>
+<button class="form_field" onclick = "sendFunction()">Send</button>
+<br/>
 <br/>
 <footer id ="foot">© 2024 Severin Richter. All rights reserved.</footer>
 </body>
 <!--script tags need to be placed after the elements that should be changed (most best at the very bottom)the last html closing tag because
 we need the html to load all objects first before we modify those with the JS code, CSS is the opposite-->
-<script src="./ai_serv.js"></script>
+<script src="ai_serv.js"></script>
 
 <script>
 function darkmodeFun() {
