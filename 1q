@@ -31,14 +31,8 @@
 <br/>
 <h3 id="TL_ueberschrift">Tiny Log</h3>
 <div class = "log">
-	<h4>29/12/24</h4>
-                <p> - Learning more JavaScript, ExpressJS  JS. 3:12h - </p>
-	<h4>28/12/24</h4>
-                <p> - Learning more JavaScript, this webpage  JS. 2:09h - </p>
-	<h4>27/12/24</h4>
-                <p> - Learning more JavaScript, about Networks etc JS. 2:30h - </p>
 	<h4>26/12/24</h4>
-                <p> - Learning more JavaScript, about Networks etc JS. 3:31h - </p>
+                <p> - Learning more JavaScript, about Network etc JS. 3:10h - </p>
 	<h4>25/12/24</h4>
                 <p> - Learning more about JavaScript. JS. 3:02h - </p>
 	<h4>24/12/24</h4>
@@ -82,7 +76,7 @@ function darkmodeFun() {
    html_body.classList.toggle("dark-mode");
    <!-- first assigns the document.body part of the DOM to the specific class dark-mode-->
    <!--this toggles the .dark-mode class we have written in the css to modify specific html styles-->
-   <!-- .classList returns the class attributes of an element(BODY in this case)-->
+   <!-- .classList returns the class attributes of an element-->
    <!-- toggle means the class we specified gets assigned to the body element-->
    <!-- es gibt noch weitere solcher methoden .add("new_class") fuegt eine klasse hinzu-->
 

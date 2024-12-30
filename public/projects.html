@@ -1,54 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-        <head>
+	<head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Projects</title>
  		<link rel="stylesheet" href="../styles.css"/>
 
 	</head>
+
+
 <body> 
 <div class="placeholder">
-<br/>
-<div class ="buttonSytle">
-        <button onclick ="darkmodeFun()" id="uniqueButton" type="button">dark|light</button>
+	<br/>
+
+	<!--dark-mode-button-->
+	<div class ="buttonSytle">
+        	<button onclick ="darkmodeFun()" id="uniqueButton" type="button">dark|light</button>
+	</div>
 </div>
-</div>
-	
-<br/>
-<br/>
+<br/><br/>
+
+
 <div class="projects">	
-<a style="font-size:16px;"href="../index.html">back</a>
+	<a style="font-size:16px;"href="../index.html">back</a>
 </div>
 <div class="microscope">
-<p id="mic">[Flux1.schnell]</p>
+	<p id="mic">[Flux1.schnell]</p>
 </div>
 <hr id="prohr" />
 <br/>
 
-<form class="form_field" id="prompt_text">Enter prompt:<textarea></textarea></form>
+
+<form class="form_field" >Enter prompt:<textarea id="prompt_text"></textarea></form>
 <br/>
-<form class="form_field" id="inference_step">inference_steps:<input id="textbox"></input></form>
-<form class="form_field" id="manual_seed"> manual_seed:<input id="textbox"></input></form>
+<form class="form_field" id="inference_step">inference_steps:<input class="textbox" id = "inference_s"></input></form>
+<form class="form_field" id="manual_seed"> manual_seed:<input class="textbox" id="man_seed"></input></form>
 <br/>
-<button class="form_field" onclick = "sendFunction()">Send</button>
-<br/>
-<br/>
+
+
+<button class="form_field" id = "submit_button" >Send</button>
+<!-- above we first send an alert about the img being processed, then send the pic in 2nd function-->
+
+<div class ="GeneratedImage"></div>
+<br/><br/>
+
 <footer id ="foot">© 2024 Severin Richter. All rights reserved.</footer>
 </body>
+
+
 <!--script tags need to be placed after the elements that should be changed (most best at the very bottom)the last html closing tag because
 we need the html to load all objects first before we modify those with the JS code, CSS is the opposite-->
+
+
+<!-- imports the ai_serv.js script for sendbutton functions-->
 <script src="ai_serv.js"></script>
 
+<!-- dark mode script in local html-->
 <script>
 function darkmodeFun() {
    var element = document.body;
    element.classList.toggle("dark-mode");
-}
-
+	}
 </script>
 <script>
 	<!--window.onload = darkmodeFun();-->
 </script>
+
 
 </html>
