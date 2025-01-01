@@ -65,8 +65,8 @@ document.getElementById('submit_button').addEventListener('click', function() {
 	alert(jsonStringData);
 	// XMLHttpRequest is an API in the form of a js object with
 	// methods to transmit HTTP requests to a server from browser
-	const xpr = new XMLHttpRequest();
-	xhr.open("POST", "ServerURL",true); //true for async processing
+	const xhr = new XMLHttpRequest();
+	xhr.open("POST", "localhost:3000",true); //true for async processing
 	xhr.setRequestHeader("Content-Type","iapplication/json");
 	xhr.onload = function(){
 		if(xhr.status >=200 && shr.status <300){
