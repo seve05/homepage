@@ -33,16 +33,19 @@
 
 <form class="form_field" >Enter prompt:<textarea id="prompt_text"></textarea></form>
 <br/>
-<form class="form_field" id="inference_step">inference_steps:<input class="textbox" id = "inference_s"></input></form>
+<form class="form_field" id="inference_step">inference_steps:<input class="textbox" id = "inference_s"></input></form><br/>
 <form class="form_field" id="manual_seed"> manual_seed:<input class="textbox" id="man_seed"></input></form>
 <br/>
-
+<br/>
 
 <button class="form_field" id = "submit_button" >Send</button>
 <!-- above we first send an alert about the img being processed, then send the pic in 2nd function-->
+<br/><br/>
+<br/><a class ='form_field' style="text-align:center" href = "http://localhost:3000/imageDownload" download>Download</a>
 
-<!-- Server side generated image in here -->
-<img class="form_field" id="generatedImage" src="https://DOMAIN A/image.jpg">
+<!-- Server side generated image in here UPDATE: ill rather provide a download 
+because of the security implications as of right now it would be hosted locally-->
+<!--<img class="form_field" id="generatedImage" src="">-->
 <br/><br/>
 
 <footer id ="foot">© 2024 Severin Richter. All rights reserved.</footer>
@@ -54,7 +57,7 @@ we need the html to load all objects first before we modify those with the JS co
 
 
 <!-- imports the ai_serv.js script for sendbutton functions-->
-<script src="ai_serv.js"></script>
+<script src="to_serv.js"></script>
 
 <!-- dark mode script in local html-->
 <script>

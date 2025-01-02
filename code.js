@@ -5,11 +5,6 @@ alert(hello);
 function getGot(){
 	console.log("aaaaaooooiii");
 }
-function Addition(a,b){
-	return a+b;
-}
-// since we used return above we can now assign this function to variables 
-
 
 getGot();
 var someSome = Addition(5,9);
