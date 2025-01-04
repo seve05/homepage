@@ -15,7 +15,7 @@
 
 	<!--dark-mode-button-->
 	<div class ="buttonSytle">
-        	<button onclick ="darkmodeFun()" id="uniqueButton" type="button">dark|light</button>
+        	<button onclick ="lightmodeFun()" id="uniqueButton" type="button">dark|light</button>
 	</div>
 </div>
 <br/><br/>
@@ -41,8 +41,8 @@
 <button class="form_field" id = "submit_button" >Send</button>
 <!-- above we first send an alert about the img being processed, then send the pic in 2nd function-->
 <br/><br/>
-<br/><a class ='form_field' style="text-align:center" href = "http://localhost:3000/imageDownload" download>View Image</a>
-
+<p id="sent" style="width:70%" class="form_field" style="margin-left:25%;"></p>
+<img id="gendImg" class="form_field" >
 <!-- Server side generated image in here UPDATE: ill rather provide a download 
 because of the security implications as of right now it would be hosted locally-->
 <!--<img class="form_field" id="generatedImage" src="">-->
@@ -59,15 +59,15 @@ we need the html to load all objects first before we modify those with the JS co
 <!-- imports the ai_serv.js script for sendbutton functions-->
 <script src="to_serv.js"></script>
 
-<!-- dark mode script in local html-->
+<!-- dark(light) mode script in local html-->
 <script>
-function darkmodeFun() {
+function lightmodeFun() {
    var element = document.body;
-   element.classList.toggle("dark-mode");
+   element.classList.toggle("light-mode");
 	}
 </script>
 <script>
-	<!--window.onload = darkmodeFun();-->
+	<!--window.onload = lightmodeFun();-->
 </script>
 
 

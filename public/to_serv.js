@@ -1,12 +1,39 @@
-
 function sendPicAlert(){
-	alert("Prompt was sent to server, please wait for the image to generate.. inference steps:'2' ~1min");
+	let contents = document.getElementById("sent");
+	contents.innerHTML = "Prompt was sent to server, please wait..";
 }
 
+function done_processing(){
+	let contents = document.getElementById("sent");
+	contents.innerHTML = "Processing done. You can view the Image now.";
+	showImg();
+	toggleSendB(1);
+}
 
+function toggleSendB(T){
+	let contents = document.getElementById("submit_button");
+	if (T === 1) {
+		contents.style.display = "block";
+	}
+	else {
+		contents.style.display = "none";
+	}
+}
+
+function showImg(){
+	let contents = document.getElementById("gendImg");
+	contents.src = "http://localhost:3000/imageDownload"; 
+}
+
+function delImg(){
+	let contents = document.getElementById("gendImg");
+	contents.src = "";
+}
 
 document.getElementById('submit_button').addEventListener('click', function() {
-	sendPicAlert()
+	delImg();
+	sendPicAlert();
+	toggleSendB(0);
 	let prompt_t= document.getElementById('prompt_text').value;
 	let inference = document.getElementById('inference_s').value;
 	let seed = document.getElementById('man_seed').value;
@@ -26,7 +53,7 @@ document.getElementById('submit_button').addEventListener('click', function() {
 	xhr.setRequestHeader("Content-Type","application/json");
 	xhr.onload = function(){    // .onload gets executed after the send method is complete !
 		if(xhr.status >=200 && xhr.status <300){
-			alert("Image ready to download !");
+			done_processing();
 		}else{
 			console.error("Request failed. Status:" +xhr.status);
 		}

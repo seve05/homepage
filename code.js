@@ -1,3 +1,7 @@
+// 'let' is a re-assignable variable in Javascript, meaning it can change state without programmers intervention
+
+//Arrays in JS
+//
 // JSON = JavaScript Object Notation is an open standard file format and data-interchange
 // format that uses human-readable text to store an dtransmit data objects consisting
 // of name-value-pairs and arrays (or other serialized values). It is a commonly used data
@@ -6,7 +10,8 @@
 //
 // serialization: is the process of translating a data structure or object state into
 // a format that can be stored(file) in a secondary storage device (aka local storage)
-// like RAM
+// like ram.
+//
 // Object.includes(looks for) is a method that traverses the array and returns 
 // true if it find the data in the array.
 //

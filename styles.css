@@ -8,6 +8,8 @@ h1{
 	letter-spacing:4px;
 }
 
+
+
 #head{
 	max-width:100%;
 	margin:auto;
@@ -26,16 +28,17 @@ h1{
 	margin-left:25%;	
 }
 
-.dark-mode{
+.light-mode{
 	background: #fcfaf0 ;
 	color: black;
+	
 	a{
 	color:#fcfaf0;
 	background:black;
 	transition-duration:0.1s;
 	}
-	a:hover
-	{
+
+	a:hover{
 	background-color:#fcfaf0;
 	color:black;
 
@@ -46,8 +49,8 @@ h1{
         color:#fcfaf0;
         background-color:black;
 	letter-spacing:4px;	
-
 	}
+
 	#uniqueButton:hover{
         background-color:#fcfaf0;
         color: black;
@@ -55,11 +58,22 @@ h1{
 	
 	#firsthr, #secondhr, #lasthr{
 	border:1px solid #111214;
+	}
 
+	#submit_button{
+	background-color:black;
+	color:#fcfaf0;	
+	}
+
+	#submit_button:hover{
+	background-color:#fcfaf0;
+	color:black;
+	}
+	
 }
 	
 
-}
+
 
 #TL_ueberschrift{
 margin:auto;
@@ -78,8 +92,7 @@ a:hover{
 	background-color:black;
 	color:white;
 }
-a:active{
-}
+
 
 .intro{
 	margin: auto;
@@ -100,6 +113,7 @@ width:50%;
 position:relative;
 
 }
+
 #uniqueButton{
 	position:absolute;
 	transition-duration: 0.1s;	
@@ -111,11 +125,26 @@ position:relative;
 	left:77%;
 	top:40%;
 }
+
 #uniqueButton:hover{
 	background-color:black;
 	color:white;
 }
 
+#submit_button{
+        display:inline-block;
+        color:black;
+        background-color:white;
+        text-decoration:none;
+        transition-duration:0.1s;
+        letter-spacing:2px;
+	border:none;
+}
+
+#submit_button:hover{
+        background-color:black;
+        color:white;
+}
 
 .links{
 	top:10px;
@@ -174,6 +203,9 @@ position:relative;
 	width:50%;
 	clear:left;
 }
+#gendImg{
+	width:50%;
+}
 
 #mic{
 	font-size:22px;
@@ -203,11 +235,6 @@ position:relative;
 	max-width:80%;
 	width:150px;
 	margin-left:10%;	
-}
-	
-.projects{
-	margin: auto;
-	width: 80%;
 }
 #stone_text{
         float:left;
@@ -241,7 +268,11 @@ position:relative;
 	width:80%;
 	clear:left;
 }
- 
+
+#gendImg{
+	width:80%;
+}
+
 .intro{
 	margin: auto;
 	width: 80%;
@@ -340,7 +371,11 @@ position:relative;
 	width:40%;
 	clear:left;
 }
- 
+
+#gendImg{
+	width:40%;
+}
+
 .intro{
 	margin: auto;
 	width: 40%;

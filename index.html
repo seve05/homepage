@@ -12,7 +12,7 @@
 <div class="placeholder">
 <br/>
 <div class ="buttonSytle">
-	<button onclick ="darkmodeFun()" id="uniqueButton" type="button">dark|light</button>
+	<button onclick ="lightmodeFun()" id="uniqueButton" type="button">dark|light</button>
 </div>
 </div>
 <br/>
@@ -31,6 +31,10 @@
 <br/>
 <h3 id="TL_ueberschrift">Tiny Log</h3>
 <div class = "log">
+	<h4>03/12/24</h4>
+                <p> - Fixing UI,More CSS,HTML,CORS-Errors, trying to figure out a way to localhost with HTTPS... JS,ExpressJS,Node 4:25h - </p>
+	<h4>02/12/24</h4>
+                <p> - Working on local Server for AI-img gen making UI better. JS,ExpressJS,Python 3:35h - </p>
 	<h4>01/12/24</h4>
                 <p> - Working on local Server for AI-img gen and the interconnection with the frontend webpage. JS,ExpressJS,Python 6:25h - </p>
 	<h4>31/12/24</h4>
@@ -83,9 +87,9 @@
 </div>
 
 <script>
-function darkmodeFun() {
+function lightmodeFun() {
    var html_body = document.body;
-   html_body.classList.toggle("dark-mode");
+   html_body.classList.toggle("light-mode");
    <!-- first assigns the document.body part of the DOM to the specific class dark-mode-->
    <!--this toggles the .dark-mode class we have written in the css to modify specific html styles-->
    <!-- .classList returns the class attributes of an element(BODY in this case)-->
