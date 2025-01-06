@@ -10,7 +10,7 @@ h1{
 
 .projectsmenu{
 	display:flex;
-	flex-direction:column;
+	flex-direction:row;
 	justify-content:space-around;
 	margin-left:40%;
 	align-items:center;
