@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Projects</title>
+                <link rel="stylesheet" href="../styles.css"/>
+
+        </head>
+
+
+<body> 
+<div class="placeholder">
+        <br/>
+
+        <!--dark-mode-button-->
+        <div class ="buttonSytle">
+                <button onclick ="lightmodeFun()" id="uniqueButton" type="button">dark|light</button>
+        </div>
+</div>
+<br/><br/>
+
+
+<div class="projects"> 
+        <a style="font-size:16px;"href="../public/projects.html">back</a>
+</div>
+
+<div class="microscope">
+        <h2 id="mic">[Flux1.schnell]</h2>
+	<p>Generate any image.<br/>Higher inference steps = input gets processed more times.<br/>Testing infrastructure of potential future projects. <br/><br/>(only works on localhost at the moment)</p>
+</div>
+<hr id="prohr" />
+<br/>
+
+
+<form class="form_field" >Enter prompt:<textarea id="prompt_text"></textarea></form>
+<br/>
+<form class="form_field" id="inference_step">inference_steps:<input class="textbox" id = "inference_s"></input></form><br/>
+<form class="form_field" id="manual_seed"> manual_seed:<input class="textbox" id="man_seed"></input></form>
+<br/>
+<br/>
+
+<button class="form_field" id = "submit_button" >Send</button>
+<!-- above we first send an alert about the img being processed, then send the pic in 2nd function-->
+<br/><br/>
+<p id="sent" style="width:70%" class="form_field" style="margin-left:25%;"></p>
+<img id="gendImg" class="form_field" >
+<!-- Server side generated image in here UPDATE: ill rather provide a download 
+because of the security implications as of right now it would be hosted locally-->
+<!--<img class="form_field" id="generatedImage" src="">-->
+<br/><br/>
+<hr id = "prohr"/>
+<br/>
+<footer id ="foot">© 2024 Severin Richter. All rights reserved.</footer>
+</body>
+
+
+
+
+<!-- imports the ai_serv.js script for sendbutton functions-->
+<script src="to_serv.js"></script>
+
+<!-- dark(light) mode script in local html-->
+<script>
+function lightmodeFun() {
+   var element = document.body;
+   element.classList.toggle("light-mode");
+        }
+</script>
+<script>
+        <!--window.onload = lightmodeFun();-->
+</script>
+
+
+</html>
