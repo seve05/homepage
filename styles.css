@@ -1,3 +1,5 @@
+/*es waere klug gewesen es in global und special case einzuteilen*/
+
 body{ 
 	background:black;
 	color: #dde3ed;
@@ -8,14 +10,32 @@ h1{
 	letter-spacing:4px;
 }
 
+.fourfour{
+	margin-left:25%;
+	margin-right:5%;
+	max-width:500px;
+	float: left;
+}
+
+@media (min-width:550px){
+.fourfour{
+	float: left;
+	margin-left:25%;
+	max-width:500px;
+}
+}
+.description{
+	margin-right:25%;
+	margin-left:25%;
+}
 .projectsmenu{
 	display:flex;
-	flex-direction:row;
-	justify-content:space-around;
+	flex-direction:column;
+	justify-content:center;
 	margin-left:30%;
 	align-items:center;
 	margin-right:30%;
-	gap:20px;
+	gap:10px;
 }
 
 
@@ -32,7 +52,7 @@ h1{
 @media (max-width:1155px){
 .projectsmenu{
 	margin-left:20%;
-	gap:20px;
+	gap:10px;
 	margin-right:20%;
 }
 }
@@ -63,17 +83,18 @@ h1{
 	a{
 	color:#fcfaf0;
 	background:black;
-	transition-duration:0.1s;
+	transition-duration:0.3s;
 	}
 
 	a:hover{
 	background-color:#fcfaf0;
 	color:black;
+	transition-duration:0.3s;
 
 	}
 
 	#uniqueButton{
-        transition-duration: 0.1s;
+        transition-duration: 0.4s;
         color:#fcfaf0;
         background-color:black;
 	letter-spacing:4px;	
@@ -82,6 +103,7 @@ h1{
 	#uniqueButton:hover{
         background-color:#fcfaf0;
         color: black;
+	transition-duration: 0.3s;
 	}
 	
 	#firsthr, #secondhr, #lasthr{
@@ -113,12 +135,13 @@ a {
 	color:black;
 	background:white;
 	text-decoration:none;
-	transition-duration:0.1s;
+	transition-duration:0.3s;
 	letter-spacing:2px;	
 }
 a:hover{
 	background-color:black;
 	color:white;
+	transition-duration:0.3s;
 }
 
 
@@ -157,6 +180,7 @@ position:relative;
 #uniqueButton:hover{
 	background-color:black;
 	color:white;
+	transition-duration:0.3s;
 }
 
 #submit_button{
@@ -177,12 +201,16 @@ position:relative;
 .links{
 
 	display:flex;
-	flex-direction:row;
-	justify-content:space-around;
+	flex-direction:column;
+	justify-content:space-evenly;
 	margin-left:33%;
 	margin-right:33%;
 	align-items:center;
+	gap:20px;
+}
 
+.main_items:{
+	width:300px;	
 }
 
 .log{
@@ -252,13 +280,24 @@ position:relative;
 	margin:auto;
 }
 #foot{	
+	position:fixed;
 	font-size:12px;
 	margin-left:25%;
+	bottom:0;
 }
 
 	
 @media (max-width:1000px){
 
+.description{
+	margin-right:10%;
+	margin-left:10%;
+}
+.fourfour{
+	margin-left:10%;
+	margin-right:10%;
+	max-width:250px;
+}
 
 .form_field{
 	max-width:80%;
@@ -359,6 +398,12 @@ position:relative;
 
 @media (min-width:1921px){
 
+.fourfour{
+	max-width:500px;
+	float:left;
+	margin-left:30%;
+}
+
 .form_field{
 	max-width:40%;
 	width:150px;
@@ -370,7 +415,9 @@ position:relative;
 }
 
 #imge{
-	max-width:40%
+	
+
+max-width:40%
 }	
 #stone_text{
         float:left;
@@ -416,10 +463,10 @@ position:relative;
 	width:40%;
 }
 
-
 .links{
 	margin: auto;
 	width: 40%;
+	
 }
 
 
