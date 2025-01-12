@@ -39,7 +39,7 @@ h1{
         background:white;
         text-decoration:none;
         transition-duration:0.5s;
-	font-size: 2.5vw; 
+	font-size: 3vw; 
 	border-radius:3px;
 	padding: 7px 7px 7px 7px;
 }
@@ -195,7 +195,14 @@ h1{
 	}
 }
 @media(max-width:650px){
-	.menu_items{
-		font-size:4vw;
+	#retropic{
+		max-width:60%;
 	}
+	.menu_items{
+		font-size:5vw;
+	}
+	.yearsearchdiv{ 
+		max-width:40%;
+	}		
+	
 }
