@@ -1,7 +1,7 @@
 
 body{ 
         background:white;
-        font-family: "Courier New", monospace;
+        font-family: "Georgia", monospace;
 }
 
 #retropic{
@@ -33,45 +33,15 @@ h1{
 }
 
 
-.menu_items {	
-        display:inline-block;
-        color:black;
-        background:white;
-        text-decoration:none;
-        transition-duration:0.5s;
-	font-size: 3vw; 
-	border-radius:3px;
-	padding: 7px 7px 7px 7px;
+.spanpercentplus{
+	font-size:2vw;
+	color:#50C878;
 }
-.menu_items:hover{
-        background-color:#50C878;
-        color:black;
-        transition-duration:0.3s;
-	border-radius:3px;
+.spanpercentminus{
+	font-size:2vw;
+	color:red;
 }
 
-.spanpercent{
-	background-color:white;
-	font-weight:bold;
-}
-
-.linksmenuflexcontainer{
-	display:flex;
-	flex-direction:row;
-	justify-content:center;
-	gap: 25px;
-}
-
-.anchor{
-	display:inline-block;
-        color:black;
-        background:white;
-        text-decoration:none;
-        transition-duration:0.5s;
-        font-size: 2.5vw;
-        border-radius:3px;
-        padding: 8px 8px 8px 8px;
-}
 
 /* row of columns*/
 .metaflexcontainer{
@@ -79,7 +49,6 @@ h1{
 	flex-direction:row;
 	justify-content:center;
 	align-items:flex-start;
-	gap:20px;
 }
 
 .trendingup{
@@ -87,7 +56,6 @@ h1{
 	flex-direction:column;
 	justify-content:center;
 	align-items:center;	
-	gap:50px;
 }	
 
 .trendingdown{
@@ -95,7 +63,6 @@ h1{
 	flex-direction:column;
 	justify-content:center;
 	align-items:center;	
-	gap:50px;
 }
 .updowntoptext{
 	text-align:center;
@@ -103,34 +70,25 @@ h1{
 
 .itemup{
 	display:flex;
-	background-color:#50C878;
 	flex-direction:column;
 	align-items:center;
 	border-radius:3px;
 	padding: 8px 8px 8px 8px;
 	opacity:0.9;
 	transition-duration:1s;
+	max-width:50%;
 }
-.itemup:hover{
-	opacity:1;
-	transition-duration:0.2s;
-}
-
 .itemdown{
 	display:flex;
 	flex-direction:column;
 	align-items:center;
-	background-color:#E97451;
 	border-radius:3px;	
 	padding: 8px 8px 8px 8px;
-	opacity:0.5;
+	opacity:0.9;
 	transition-duration:1s;
+	max-width:50%;
 }
-.itemdown:hover{
-	opacity:1;
-	transition-duration:0.2s;
 
-}
 
 .headline{
 	margin-left:33%;
@@ -176,6 +134,19 @@ h1{
 		font-size:1.75vw;
 	}
 
+	.metaflexcontainer{
+		flex-direction:column;
+	}
+	.trendingdown{
+		flex-direction:row;
+		margin-left:15%;
+		margin-right:15%;
+	}
+	.trendingup{
+		flex-direction:row;	
+		margin-left:15%;
+		margin-right:15%;
+	}
 }
 
 @media (min-width:1448px){
@@ -193,16 +164,22 @@ h1{
 	.back{
 		font-size:1vw;
 	}
+	#metadiv{
+		margin-left:10%;
+		margin-right:10%;
+	}	
+	
 }
 @media(max-width:650px){
 	#retropic{
 		max-width:60%;
 	}
 	.menu_items{
-		font-size:5vw;
+		font-size:4vw;
 	}
 	.yearsearchdiv{ 
 		max-width:40%;
 	}		
+		
 	
 }
