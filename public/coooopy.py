@@ -43,12 +43,12 @@ def load_hundred_filingnum():
     response = requests.get(url, headers=headers)
     training_a = ""
     training_b = []
-    for i in range(7):######################################## CHANGE N OF FILINGS TO FETCH
+    for i in range(40):######################################## CHANGE N OF FILINGS TO FETCH
         training_a = response.json()['filings']['recent']['accessionNumber'][i]
         training_b.append(training_a)
     print("\nfilingsnums loaded\n")###########DEBUG
     return(training_b)  
-
+    
 
 
 def scrape_hundredfilings():
@@ -60,12 +60,14 @@ def scrape_hundredfilings():
         header = {
             'User-Agent': 'SeverinComp severin.comp@gmail.com', 'Accept-Encoding':'gzip, deflate'}
         urltwo = "https://www.sec.gov/Archives/edgar/data/0001780312/"+nodash+"/"+filingnumbers[i]+".txt"
-        
+        print(urltwo) 
         responsetwo = requests.get(urltwo,headers = header)
-        soup = BeautifulSoup(responsetwo.text, 'html.parser')
-        pattern = re.compile(r'\b[a-zA-Z]+\b')#regex for normal word .compile creates a regex object that can be checked against
-
-        souped = soup.find_all(text=lambda text: isinstance(text, str))
+        # cut the response bc we might get overwhelmed by bloated dataset containing images etc
+        responsethree = responsetwo.text[0:5999999]
+        soup = BeautifulSoup(responsethree, 'html.parser')
+        pattern = re.compile(r'\b[a-zA-Z]+\b|^\$[^\s]+|\$\d+')#regex for normal word of any length or symbol with leading dollar sign .compile creates a regex object that can be checked against
+        souped = soup.find_all(text=lambda text: isinstance(text, str) or isinstance(text,int) or isinstance(text,float) or text[0]=="$")
+        souped = soup.find(pattern)
 
         outputs = ""
         for text in souped:
@@ -74,10 +76,9 @@ def scrape_hundredfilings():
                 outputs = outputs + " " + str(word)  #war vorher word
         try:
             cut_version = cut_string(outputs,"SIGNATURE")
-
         except:
             cut_version = cut_string(outputs,"Signature")
-        
+
         cut_version = cut_version
         print(cut_version)
         print("\nFiling "+ str(i) + " loaded\n")
@@ -85,14 +86,18 @@ def scrape_hundredfilings():
         file.write(cut_version)
         file.write(',')
     file.close #now 100 filings are in this file
+        
 
 
 def clean_filings(inp):
         antipattern = re.compile(r'^[A-Z]*.*[A-Z]$')  #^at start, .* any character zero or more times(at end), .$ match all at end
         cleaninglist = inp.split(' ')
         cleanedtext = ""
+        blockedlist = ['xbrl','www','style','color','span','p','font','lt','wrap','xml','xbrli','nextSibling','stringItemType','flex','inline','bold','min','width','New','Roman','text','div','gt','content','id','vertical','ffffff','pre','Times','fit','td','colspan','Calibri','sans','nowrap','solid','box','table','tr','auto','collapse','visibility','break','contextRef','pre','right','left','max','center','align','unitRef','gaap','us','xhtml','html','org','com','xbrldi','link','schemaRef','xlink','href','http','xmlns','fasb','srt','dei','garg','XMLSchema','zip','type','context','sec','gov','explicitMember','dimension','xbrldi','identifier','role','commonPracticeRef','Topic','SubTopic','Name','fasb','Subparagraph','Publisher','https','Codification','Section','Paragraph','f','exampleRef','Name','disclosureRef','iii','d','asci','otherTransitionRef','display','Type','na','Namespace','Prefix','integerItemType','Type','Prefix','toggleNextSibling','e','none','htm','dtr','else','c','ii','i','iv','Standards','Accounting','ref','Reference','dtr','']
         for word in cleaninglist:
-            if antipattern.search(word): # we have to make sure we have only a word that we search 
+            if word in blockedlist or len(word)>=40:
+                pass
+            elif antipattern.search(word): # we have to make sure we have only a word that we search 
                 pass
             else:
                 cleanedtext = cleanedtext +" "+ word
@@ -117,7 +122,7 @@ def getlatestfiling():
     return(recent)
 
 
-
+#######################SINGLE FILE FUNCTION DO NOT USE 
 def scrapefiling(filingnum):
     nodash =""
     for char in filingnum:
@@ -128,7 +133,7 @@ def scrapefiling(filingnum):
     responsetwo = requests.get(urltwo,headers = header)
     #print(filingnum,nodash,urltwo)
     soup = BeautifulSoup(responsetwo.text, 'html.parser')
-    pattern = re.compile(r'\b[a-zA-Z]+\b')#regex for normal word .compile creates a regex object that can be checked against
+    pattern = re.compile(r'\b[a-zA-Z]+\b')#regex for normal word or number with leading dollar sign .compile creates a regex object that can be checked against
     
     words = soup.find_all(text=lambda text: isinstance(text, str))
 
@@ -181,21 +186,25 @@ for doc in documentsaslist:
     finaldocuments = finaldocuments + " "+ a 
 print(finaldocuments)
 print("----------------------------Cleaning dataset done-----------------------------------")
+print("----------------------------Splitting into chunks----------------------------------")
 textsplitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 #instantiates textsplitter chunks measured by n of characters
 
 docs = textsplitter.create_documents(finaldocuments)
 #split text
 
-embeddings = OllamaEmbeddings(model="deepseek-r1:1.5b")
+print("----------------------------Creating word embeddings----------------------------------")
+embeddings = OllamaEmbeddings(model="deepseek-r1:1.5b") # i think using a smaller model to create the embeddings is feasable
 
+print("----------------------------Saving to vector db----------------------------------")
 vectorstore = FAISS.from_documents(docs, embeddings)
 #instantiate vectorstorage from split text and embeddings
 #do similarity search and clustering with FAISS library
 
 #retrieval chain
-llm = OllamaLLM(model='deepseek-r1:7b')
-latest =clean_filings(scrapefiling(latestfiling()))
+llm = OllamaLLM(model='deepseek-r1:8b')
+latest =clean_filings(scrapefiling(getlatestfiling()))
+print('Latest Filing',latest)
 prompttemplate = """use the following context to answer the question.
     Context: {context}
     Question: {question}
@@ -203,17 +212,8 @@ prompttemplate = """use the following context to answer the question.
 prompt = PromptTemplate.from_template(prompttemplate)
 #create prompttemplate
 qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(), chain_type_kwargs={"prompt": prompt})
-question= "What does this latest filing mean for the company:"+str(latest)##
+question= "List all the major milestones for the company and additionally answer:What does this latest filing mean for the company:"+str(latest)
+print("----------------------------Generation, RAG----------------------------------")
 result = qa_chain({"query":question})
 print(result['result'])
-
-
-#                                   Next: clean up input, kein garbage in
-#                                   dann: modelle anlegen fuer unternehmen
-#                                         und rss feed abfragen, weitere 
-#                                         anwendungen finden
-#                                       
-#
-#
-#
 

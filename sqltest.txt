@@ -1,0 +1,47 @@
+C  Create
+R  Read
+U  Update
+D  Destroy
+
+[;] is a statement terminator. It is used to separate one statemenent
+(by terminating it) from the next.	
+
+//table name shouldnt start with a number
+CREATE TABLE mytable(
+	id INT NOT NULL,     
+	item_name STRING,
+	price MONEY,
+	PRIMARY KEY (id)
+);
+
+
+// inserting datapoints into a table:
+
+INSERT INTO mytable(id, item_name, price)  
+VALUES (1,"Tamagotchi",18),(2,"Polaroid 600",39.99),(3,"Nokia 3110",160),(3,"Honda EV Plus",NULL)
+
+//omit the arguments if you want to insert into every column
+
+SELECT * FROM 'mytable';
+// reads everything from the 'mytable'
+
+SELECT item_name,price FROM 'mytable'
+// only reads the select columns
+
+//search condition:
+SELECT * FROM 'mytable' WHERE id = '1';
+
+//update:
+
+UPDATE 'mytable' SET price = '1000' WHERE id='3';
+
+// Delete:
+DELETE * FROM 'mytable';
+// Delete a column
+DELETE * FROM 'mytable' WHERER id = '1';
+
+
+
+
+
+
