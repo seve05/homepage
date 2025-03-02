@@ -8,11 +8,11 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import FAISS
 from langchain_ollama import OllamaEmbeddings
 from langchain.prompts import PromptTemplate
-from langchain.chains import RetrievalQA
+from langchain.chains import RetrievalQA, MapReduceChain, LLMChain,ReduceDocumentsChain
+from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 
 from langchain_ollama import OllamaLLM
 #from langchain_community.embeddings import OllamaEmbeddings
-#soup = BeautifulSoup(response.text, 'html.parser') 
 
 
 def cut_string(text, sequence):
@@ -43,7 +43,7 @@ def load_hundred_filingnum():
     response = requests.get(url, headers=headers)
     training_a = ""
     training_b = []
-    for i in range(12):######################################## CHANGE N OF FILINGS TO FETCH 
+    for i in range(25):######################################## CHANGE Number OF FILINGS TO FETCH 
         training_a = response.json()['filings']['recent']['accessionNumber'][i]
         training_b.append(training_a)
     print("\nfilingsnums loaded\n")###########DEBUG
@@ -63,7 +63,7 @@ def scrape_hundredfilings():
         print(urltwo) 
         responsetwo = requests.get(urltwo,headers = header)
         # cut the response bc we might get overwhelmed by bloated dataset containing images etc
-        intermediary = responsetwo.text[0:5999999]#might just want to parse the raw data
+        intermediary = responsetwo.text[0:5999999]
         pattern = re.compile(r'\b[a-zA-Z]+\b|^\$[^\s]+|\$\d+|\b\d{1,2}[-/]\d{1,2}[-/]\d{2,4}\b') #..... regex for normal word of any length or symbol with leading dollar sign .compile creates a regex object that can be checked against
         responsethree = re.sub(r'<[^>]+>', '', intermediary) #deletes all content inbetween <> tags 
         lookforstr = responsethree.split(" ")
@@ -75,15 +75,14 @@ def scrape_hundredfilings():
         for text in newlist:
 
             text_words = pattern.findall(text) #find all strings that match for each text 
-            for word in text_words:  ##########3last change
-                outputs = outputs + " " + str(word)  #war vorher word
+            for word in text_words: 
+                outputs = outputs + " " + str(word)  
         try:
             cut_version = cut_string(outputs,"SIGNATURE")
         except:
             cut_version = cut_string(outputs,"Signature")
 
         cut_version = cut_version
-        print(cut_version)
         print("\nFiling "+ str(i) + " loaded\n")
         file = open('documentstore.txt','a')
         file.write(cut_version)
@@ -92,26 +91,34 @@ def scrape_hundredfilings():
         
 
 
-def clean_filings(inp):
+def clean_filings(inp): #input is text in list of size one element
     antipattern = re.compile(r'^[A-Z]*.*[A-Z]+$')  #^at start, .*any character one or more times(at end), .$ denotes the end of string
     antipatterntwo = re.compile(r'^[a-z]+[A-Z][a-z]+$')
     antipatternthree = re.compile(r'^[A-Z]+[a-z]+[A-Z]+[a-z]')
-    cleaninglist = inp    
-    cleanedtext = ""
     cleanwords = []
-    for word in cleaninglist:
-        if re.search(antipattern,word) is not None:  
+    text = inp[0]
+    words = text.split(" ")
+    for word in words:
+        print(word)
+        print(type(word))
+        if re.search(antipattern,word):  
             pass
-        elif re.search(antipatterntwo,word)is not None:
+        elif re.search(antipatterntwo,word):
             pass
-        elif re.search(antipatternthree,word) is not None:
+        elif re.search(antipatternthree,word):
             pass
         else:
             cleanwords.append(word)
     cleanedtext = " ".join(cleanwords)
-    return cleanedtext  #muessen jetzt in und out in prog machen statt in file jedes mal
-        
+    outputlist = []
+    outputlist = cleanedtext.split(" ", 1) 
+    return outputlist #returns list of size:1 as that is needed
+        # this curiously needs to return a list with a single element in order for
+        # our next function to generate the correct embeddings, string returns letters as embeddings
+        # list of words returns words as embeddings
 
+
+################SINGLE FILING CLEANING DO NOT USE  FOR MULTIPLE FILINGS
 def clean_filings_single(inp):
     antipattern  = re.compile(r'^[A-Z]*.*[A-Z]+$')
     antipatterntwo = re.compile(r'^[a-z]+[A-Z][a-z]+$')
@@ -130,7 +137,7 @@ def clean_filings_single(inp):
         else:
             cleanwords.append(word)
     cleanedtext = " ".join(cleanwords)
-    return cleanedtext  #muessen jetzt in und out in prog machen statt in file jedes mal
+    return cleanedtext 
 
 
 def load_documents(filename):
@@ -150,7 +157,7 @@ def getlatestfiling():
     return(recent)
 
 
-#######################SINGLE FILE FUNCTION DO NOT USE 
+#######################SINGLE FILE FUNCTION DO NOT USE FOR MULTI FILINGS
 def scrapefiling(filingnum):
     nodash =""
     for char in filingnum:
@@ -160,7 +167,7 @@ def scrapefiling(filingnum):
     urltwo = "https://www.sec.gov/Archives/edgar/data/0001780312/"+nodash+"/"+filingnum+".txt"
     responsetwo = requests.get(urltwo,headers = header)
     #print(filingnum,nodash,urltwo)
-    intermediary = responsetwo.text[0:5999999]#might just want to parse the raw data
+    intermediary = responsetwo.text[0:5999999]# slice after this size to exclude image data etc
     pattern = re.compile(r'\b[a-zA-Z]+\b|^\$[^\s]+|\$\d+|\b\d{1,2}[-/]\d{1,2}[-/]\d{2,4}\b') #..... regex for normal word of any length or symbol with leading dollar sign .compile creates a regex object that can be checked against
     responsethree = re.sub(r'<[^>]+>', '', intermediary) #deletes all content inbetween <> tags 
     lookforstr = responsethree.split(" ")
@@ -172,8 +179,8 @@ def scrapefiling(filingnum):
     for text in newlist:
 
         text_words = pattern.findall(text) #find all strings that match for each text 
-        for word in text_words:  ##########3last change
-            outputs = outputs + " " + str(word)  #war vorher word
+        for word in text_words: 
+            outputs = outputs + " " + str(word)
     try:
         cut_version = cut_string(outputs,"SIGNATURE")
     except:
@@ -207,51 +214,57 @@ def proompting():
 def RAG_pipeline():
     scrape_hundredfilings() #scrapes 100 SEC filings, also calls scrapehundredfilings() and writes to file
     documentsaslist = load_documents('documentstore.txt') #loads from file, assigned to variable 
-    finaldocuments = documentsaslist[0].split()
-    finaldocuments = clean_filings(finaldocuments)
-    print("----------------------------Loading data done-----------------------------------")
-    print("----------------------------Cleaning dataset done-----------------------------------")
+    finaldocuments = clean_filings(documentsaslist) #bleibt list type, mit str type funktioniert nicht  
     print(finaldocuments)
+    #clean_function auch nicht weil es str returns
+    print("----------------------------Loading data done-----------------------------------")
+    
     print("----------------------------Splitting into chunks----------------------------------")
-    textsplitter = RecursiveCharacterTextSplitter(chunk_size=8000, chunk_overlap=200)
-    #instantiates textsplitter chunks measured by n of characters
-
+    textsplitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=1000) 
+    # chunk size == to context size of model ? tokens 2k max, chunk is word, token is ~4 letters = dont exceed 500chunks
     docs = textsplitter.create_documents(finaldocuments)
-    #split text
-
+    print(docs) 
     print("----------------------------Creating word embeddings----------------------------------")
-    embeddings = OllamaEmbeddings(model="deepseek-r1:1.5b") # i think using a smaller model to create the embeddings is feasable
-
+    
+    embeddings = OllamaEmbeddings(model="all-minilm:l6-v2") # i think using a smaller model to create the embeddings is feasable
+     
     print("----------------------------Saving to vector db----------------------------------")
+    
     vectorstore = FAISS.from_documents(docs, embeddings)
-    #instantiate vectorstorage from split text and embeddings
-    #do similarity search and clustering with FAISS library
+    print(vectorstore) 
 
     #retrieval chain
-    llm = OllamaLLM(model='deepseek-r1:1.5b')
-    #latest =clean_filings_single(scrapefiling(getlatestfiling()))
-    #print('Latest Filing: ',latest)
-    prompttemplate = """use the following context to answer the question.
+    llm = OllamaLLM(model='deepseek-r1:7b')
+      #this one is for chain_type="stuff"
+    prompttemplate = """use the following context from the SEC filings to answer the question if the context is incomplete say so.
         Context: {context}
         Question: {question}
         Answer:"""
-    prompt = PromptTemplate.from_template(prompttemplate)
-    #create prompttemplate
-    qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(), chain_type_kwargs={"prompt": prompt})
-    question= "Explain what the company is about and if you value this business positively or negatively"#+str(latest)
+    prompt = PromptTemplate.from_template(prompttemplate) #gets turned into vector in same semantic space
+
+    qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(search_kwargs={'k':15}), chain_type_kwargs={"prompt": prompt})
+    #need more chunks 'k' to broaden the context, because the data is very unspecific at times
+    question= "Explain what the company is about and mention any important milestones"#+str(latest)
     print("----------------------------Generation, RAG----------------------------------")
     result = qa_chain({"query":question})
+    print(qa_chain.retriever.invoke(question)) #prints retrieved content   
     print(result['result'])
 
 RAG_pipeline()
 
 #
+#   To Do:
 #
+#        -   Needs different approach bc token context size is too small for llm to read all documents 
+#        ->  Batch retrieval , chain_type = "map_reduce" which processes chunks in smaller groups by model(fitting in the token limit),
+#            summarizing each  to reduce to a final answer. goal is to use k = 200
 #
-#           Need to add years and dates in the regex to not get filtered
-#       need to improve cleaning for words up to three letters 
+#        -   Make company name variable 
 #
+#        -   store the company-specific database locally long-term
 #
+#        -   add in stocks and shareprice, revenue  as context for more robust answer
 #
+#        -   use larger model for the output generation 
 #
 #

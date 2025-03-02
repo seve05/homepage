@@ -36,7 +36,7 @@ h1{
 	margin-left:30%;
 	align-items:center;
 	margin-right:30%;
-	gap:10px;
+	gap:15px;
 }
 
 
@@ -53,7 +53,6 @@ h1{
 @media (max-width:1155px){
 .projectsmenu{
 	margin-left:20%;
-	gap:10px;
 	margin-right:20%;
 }
 }
@@ -206,24 +205,14 @@ position:relative;
 
 	display:flex;
 	flex-direction:column;
-	justify-content:space-evenly;
+	justify-content:center;
 	margin-left:33%;
 	margin-right:33%;
 	align-items:center;
-	gap:20px;
+	gap:35px;
 }
 
-.main_items:{
-	width:300px;	
-}
 
-.log{
-	height:500px;
-	margin: auto;
-	width: 50%;
-	overflow:scroll;
-	scrollbar-width:none;
-}
 
 .about{
 	margin: auto;
