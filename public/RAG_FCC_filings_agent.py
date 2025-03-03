@@ -13,6 +13,8 @@ from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 
 from langchain_ollama import OllamaLLM
 #from langchain_community.embeddings import OllamaEmbeddings
+import json
+import pandas as pd
 
 
 def cut_string(text, sequence):
@@ -148,23 +150,60 @@ def load_documents(filename):
 
 
 
-def getlatestfiling():
-    url = "https://data.sec.gov/submissions/CIK0001780312.json" #format this into data that can be sent to llm 
+def get_company_cik(company_name):
+    """Get CIK number for a company name from SEC's company tickers json."""
+    # Download and cache the company tickers data if not already present
+    try:
+        df = pd.read_json('company_tickers.json').T
+    except FileNotFoundError:
+        # Fetch and save the data if not cached
+        url = "https://www.sec.gov/files/company_tickers.json"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
+        }
+        response = requests.get(url, headers=headers)
+        df = pd.read_json(response.text).T
+        df.to_json('company_tickers.json')
+    
+    # Convert company names to lowercase for case-insensitive matching
+    df['title'] = df['title'].str.lower()
+    company_name = company_name.lower()
+    
+    # Try to find an exact match first
+    matches = df[df['title'] == company_name]
+    if len(matches) == 0:
+        # If no exact match, try partial matching
+        matches = df[df['title'].str.contains(company_name, case=False, na=False)]
+    
+    if len(matches) == 0:
+        raise ValueError(f"No company found matching '{company_name}'")
+    elif len(matches) > 1:
+        print("Multiple matches found:")
+        for _, row in matches.iterrows():
+            print(f"- {row['title']} (CIK: {row['cik_str']})")
+        raise ValueError("Please provide a more specific company name")
+    
+    # Pad CIK with leading zeros to 10 digits
+    cik = str(matches.iloc[0]['cik_str']).zfill(10)
+    return cik
+
+def getlatestfiling(cik):
+    """Modified to accept CIK as parameter"""
+    url = f"https://data.sec.gov/submissions/CIK{cik}.json"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
     response = requests.get(url, headers=headers)
-    recent = response.json()['filings']['recent']['accessionNumber'][1] ##################change to 0 for latest
-    print(recent)
-    return(recent)
-
+    recent = response.json()['filings']['recent']['accessionNumber'][0]
+    return recent
 
 #######################SINGLE FILE FUNCTION DO NOT USE FOR MULTI FILINGS
-def scrapefiling(filingnum):
-    nodash =""
-    for char in filingnum:
-        nodash = filingnum.replace("-","")
+def scrapefiling(filingnum, cik):
+    """Modified to accept CIK as parameter"""
+    nodash = filingnum.replace("-", "")
     header = {
-        'User-Agent': 'SeverinComp severin.comp@gmail.com', 'Accept-Encoding':'gzip, deflate'}
-    urltwo = "https://www.sec.gov/Archives/edgar/data/0001780312/"+nodash+"/"+filingnum+".txt"
+        'User-Agent': 'SeverinComp severin.comp@gmail.com', 
+        'Accept-Encoding': 'gzip, deflate'
+    }
+    urltwo = f"https://www.sec.gov/Archives/edgar/data/{cik}/{nodash}/{filingnum}.txt"
     responsetwo = requests.get(urltwo,headers = header)
     #print(filingnum,nodash,urltwo)
     intermediary = responsetwo.text[0:5999999]# slice after this size to exclude image data etc
@@ -211,53 +250,98 @@ def proompting():
 
                             #main code for 100 filings
 ################################################################################
-def RAG_pipeline():
-    scrape_hundredfilings() #scrapes 100 SEC filings, also calls scrapehundredfilings() and writes to file
-    documentsaslist = load_documents('documentstore.txt') #loads from file, assigned to variable 
-    finaldocuments = clean_filings(documentsaslist) #bleibt list type, mit str type funktioniert nicht  
-    print(finaldocuments)
-    #clean_function auch nicht weil es str returns
-    print("----------------------------Loading data done-----------------------------------")
-    
-    print("----------------------------Splitting into chunks----------------------------------")
-    textsplitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=1000) 
-    # chunk size == to context size of model ? tokens 2k max, chunk is word, token is ~4 letters = dont exceed 500chunks
-    docs = textsplitter.create_documents(finaldocuments)
-    print(docs) 
-    print("----------------------------Creating word embeddings----------------------------------")
-    
-    embeddings = OllamaEmbeddings(model="all-minilm:l6-v2") # i think using a smaller model to create the embeddings is feasable
-     
-    print("----------------------------Saving to vector db----------------------------------")
-    
-    vectorstore = FAISS.from_documents(docs, embeddings)
-    print(vectorstore) 
+def RAG_pipeline(company_name):
+    """Modified to accept company_name as parameter"""
+    try:
+        cik = get_company_cik(company_name)
+        print(f"Found CIK: {cik} for company: {company_name}")
+        scrape_hundredfilings()
+        documentsaslist = load_documents('documentstore.txt')
+        finaldocuments = clean_filings(documentsaslist)
+        print("----------------------------Loading data done-----------------------------------")
+        
+        print("----------------------------Splitting into chunks----------------------------------")
+        # Smaller chunk size for better processing
+        textsplitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        docs = textsplitter.create_documents(finaldocuments)
+        
+        print("----------------------------Creating word embeddings----------------------------------")
+        embeddings = OllamaEmbeddings(model="all-minilm:l6-v2")
+        
+        print("----------------------------Saving to vector db----------------------------------")
+        vectorstore = FAISS.from_documents(docs, embeddings)
 
-    #retrieval chain
-    llm = OllamaLLM(model='deepseek-r1:7b')
-      #this one is for chain_type="stuff"
-    prompttemplate = """use the following context from the SEC filings to answer the question if the context is incomplete say so.
-        Context: {context}
+        # Set up the LLM
+        llm = OllamaLLM(model='deepseek-r1:7b')
+
+        # Map prompt - for processing individual chunks
+        map_template = """Summarize the key points from this section of SEC filings:
+        {context}
+        
+        Key points:"""
+        map_prompt = PromptTemplate.from_template(map_template)
+
+        # Reduce prompt - for combining summaries
+        reduce_template = """Given these summaries from different sections of SEC filings, provide a comprehensive analysis addressing the following question:
         Question: {question}
-        Answer:"""
-    prompt = PromptTemplate.from_template(prompttemplate) #gets turned into vector in same semantic space
+        
+        Summaries:
+        {context}
+        
+        Comprehensive analysis:"""
+        reduce_prompt = PromptTemplate.from_template(reduce_template)
 
-    qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=vectorstore.as_retriever(search_kwargs={'k':15}), chain_type_kwargs={"prompt": prompt})
-    #need more chunks 'k' to broaden the context, because the data is very unspecific at times
-    question= "Explain what the company is about and mention any important milestones"#+str(latest)
-    print("----------------------------Generation, RAG----------------------------------")
-    result = qa_chain({"query":question})
-    print(qa_chain.retriever.invoke(question)) #prints retrieved content   
-    print(result['result'])
+        # Create the map chain
+        map_chain = LLMChain(llm=llm, prompt=map_prompt)
 
-RAG_pipeline()
+        # Create the reduce chain
+        reduce_chain = LLMChain(llm=llm, prompt=reduce_prompt)
 
-#
-#   To Do:
-#
-#        -   Needs different approach bc token context size is too small for llm to read all documents 
-#        ->  Batch retrieval , chain_type = "map_reduce" which processes chunks in smaller groups by model(fitting in the token limit),
-#            summarizing each  to reduce to a final answer. goal is to use k = 200
+        # Combine documents chain
+        combine_documents_chain = StuffDocumentsChain(
+            llm_chain=reduce_chain,
+            document_variable_name="context"
+        )
+
+        # Create the final reduce documents chain
+        reduce_documents_chain = ReduceDocumentsChain(
+            combine_documents_chain=combine_documents_chain,
+            collapse_documents_chain=combine_documents_chain,
+            token_max=4000,  # Adjust based on your model's context window
+        )
+
+        # Create the final map reduce chain
+        map_reduce_chain = MapReduceChain(
+            llm_chain=map_chain,
+            reduce_documents_chain=reduce_documents_chain,
+            document_variable_name="context",
+            return_intermediate_steps=False
+        )
+
+        # Set up the retrieval chain with map reduce
+        qa_chain = RetrievalQA.from_chain_type(
+            llm=llm,
+            chain_type="map_reduce",
+            retriever=vectorstore.as_retriever(search_kwargs={'k': 50}),
+            chain_type_kwargs={
+                "question_prompt": map_prompt,
+                "combine_prompt": reduce_prompt,
+                "return_intermediate_steps": False
+            }
+        )
+
+        print("----------------------------Generation, RAG----------------------------------")
+        question = "Explain what the company is about and mention any important milestones"
+        result = qa_chain({"query": question})
+        print(result['result'])
+    except ValueError as e:
+        print(f"Error: {e}")
+        return
+
+if __name__ == "__main__":
+    company_name = input("Enter company name: ")
+    RAG_pipeline(company_name)
+
 #
 #        -   Make company name variable 
 #
