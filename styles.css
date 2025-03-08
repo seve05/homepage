@@ -476,15 +476,15 @@ max-width:40%
 
 .about{
 	margin: auto;
-	width: 40%
+	width: 40%;
 }
 .contact{
 	margin: auto;
-	width: 40%
+	width: 40%;
 }
 .projects{
 	margin: auto;
-	width: 40%
+	width: 40%;
 }
 
 #TL_ueberschrift{
@@ -501,4 +501,29 @@ max-width:40%
 #foot{
 	margin-left:30%;
 		
+}
+
+#image-container {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    align-items: center; /* Center the images vertically if needed */
+    gap: 15px; /* Optional: Add some space between images */
+    max-width: 100%; /* Ensure the container does not exceed the width of its parent */
+    flex-wrap: wrap; /* Allow images to wrap if necessary */
+}
+
+#image-container img {
+    max-width: 100%; /* Ensure images do not exceed their container */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0; /* Remove any margin that might affect layout */
+}
+
+@media (max-width: 1500px) { /* Adjust the max-width as needed */
+    #image-container {
+        margin-left: 10%; /* Add margin on the left */
+        margin-right: 10%; /* Add margin on the right */
+    }
+    #image-container img {
+        transform: scale(0.9); /* Scale down the images */
+    }
 }
