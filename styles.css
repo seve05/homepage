@@ -410,7 +410,7 @@ position:relative;
 .projects{
         margin: auto;
 	width: 40%;
-}}
+}
 
 #imge{
 	
@@ -502,7 +502,7 @@ max-width:40%
 	margin-left:30%;
 		
 }
-
+}
 #image-container {
     display: flex;
     justify-content: center; /* Center the images horizontally */
