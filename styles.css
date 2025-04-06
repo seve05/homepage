@@ -12,7 +12,7 @@ h1{
 
 .intro{
 	175px;	
-	
+	text-align:center;
 }
 .fourfour{
 	margin-left:25%;
@@ -152,9 +152,7 @@ a:hover{
 }
 
 
-.intro{
-	text-align:center;
-}
+
 .welcome{
 	text-align:center;
 }
@@ -336,9 +334,6 @@ position:relative;
 	width:80%;
 }
 
-.intro{
-	text-align:center;
-}
 
 #firsthr,#secondhr, #lasthr{
 	margin:auto;
@@ -450,10 +445,7 @@ max-width:40%
 	width:40%;
 }
 
-.intro{
-	text-align:center;
-}
-
+	
 #firsthr,#secondhr, #lasthr{
 	margin:auto;
 	width:40%;
