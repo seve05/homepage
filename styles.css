@@ -8,6 +8,11 @@ body{
 
 h1{
 	letter-spacing:2px;
+	color: #fcfaf0;
+}
+
+p{
+	color: #fcfaf0;
 }
 
 .intro{
