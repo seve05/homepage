@@ -153,8 +153,6 @@ a:hover{
 
 
 .intro{
-	margin: auto;
-	width: 50%;
 	text-align:center;
 }
 .welcome{
@@ -339,8 +337,6 @@ position:relative;
 }
 
 .intro{
-	margin: auto;
-	width: 80%;
 	text-align:center;
 }
 
@@ -455,8 +451,6 @@ max-width:40%
 }
 
 .intro{
-	margin: auto;
-	width: 40%;
 	text-align:center;
 }
 
