@@ -30,7 +30,7 @@
 <div class="microscope">
         <h2 id="mic">Highlight text, screenshot images and prompt your friendly, local LLM</h2>
         <p>Some bash/python scripts to integrate use of large language models into the OS and have a way to quickly search text without needing to copy and paste. This comes in handy when looking up information or even coding in new languages where syntax or methods are unknown.</p>
-	<p>Since Gemma3 is multi-modal I also implemented image recognition in a single python file that gets initiated by a bash script and is best used by binding to a shortcut. This works by taking the data in the buffer after taking a screenshot or copying an image. Turning this from png to binary -> base64 which ollama understands and then parsed as input for the model.</p>
+	<p>Since Gemma3 is multi-modal I also implemented image recognition in a single python file that gets initiated by a bash script and is best used by binding to a shortcut. This works by taking the data in the buffer after taking a screenshot or copying an image. Turning this from png to binary -> base64 which is the standardized LLM image input format and then into the model.</p>
         <br/>
         <a href="https://github.com/seve05/ask-llm-script">https://github.com/seve05/ask-llm-script</a>
         <br/>
