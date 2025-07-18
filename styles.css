@@ -144,7 +144,7 @@ a {
 	text-decoration:none;
 	transition-duration:0.3s;
 	letter-spacing:2px;	
-	padding:5px 5px 5px 5px;
+	padding:5px 10% 5px 10%;
 }
 a:hover{
 	background-color:black;
