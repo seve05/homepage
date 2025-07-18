@@ -38,9 +38,9 @@ h1{
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
-	margin-left:40%;
+	margin-left:35%;
 	align-items:center;
-	margin-right:40%;
+	margin-right:35%;
 	gap:15px;
 }
 
