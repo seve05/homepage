@@ -37,8 +37,7 @@
 	<p> This uses Neovim because of the good extensibility with LUA. A config file in LUA is required to be able to use the custom commands in NVIM. A LUA script handles the reading of the buffer and highlighting changes. Instead of having a dif function I simply pass the linechanges. </p>
   <p> The python script initiates the LLM and changes are made. To avoid more complexity by inter-process communication between LUA and Python I simply store the changes in temporary files, might integrate version control later. In theory this is not good practice because disk access is slower than RAM reads/writes but for now this is the least of this programs problems.</p>
   <br/>
-  <p> The issue here is the model anyways, which is why in the long-term having the only moat for some companies in the models owned by Google and OpenAI is problematic. Once they decide to integrate a coding editor into their web-app (at lower cost) these wrapper apps (while exciting) are probably going away.</p>
-  <p> Now what would be interesting for the future might be to optimize smaller models to be able to generate USEFUL code. Generally I am optimistic about the prospects of local compute to remain digitally sovereign.</p>
+  <p>The issue here is the model anyway. Now what would be interesting for the future might be to optimize smaller models to be able to generate USEFUL code. Generally I am optimistic about the prospects of local compute to remain digitally sovereign.</p>
   
 </div>
 <br/>
