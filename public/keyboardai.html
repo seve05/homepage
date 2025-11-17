@@ -31,7 +31,7 @@
 
 <br/>
 <div class="microscope">
-        <h2 id="mic">keyboard_ai</h2>
+        <h2 id="mic">nvim-AI</h2>
 	<p> This is a Neovim extension that implements an interface for LOCAL code generation. <br/> I am conflicted about using AI to create code since I find offloading problem solving and thinking hugely problematic and not how I like to utilize LLMs. While writing boiler plate code might be a legacy problem, I don't think this is where the deep value of programming lies. <br/> But this is interesting nonetheless and could serve as a blueprint just for interacting with buffers for future projects.</p>
   <p> I'm using a custom model-file that outputs JSON in a custom template which allows the LLM to have control over deletion and insertion as those are the atomic operations we need to replace code.</p>
 	<p> This uses Neovim because of the good extensibility with LUA. A config file in LUA is required to be able to use the custom commands in NVIM. A LUA script handles the reading of the buffer and highlighting changes. Instead of having a dif function I simply pass the linechanges. </p>
