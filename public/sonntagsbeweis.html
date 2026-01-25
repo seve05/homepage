@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Verlustfreie Darstellung von Signalen - Ein Sonntagsbeweis
+</title>
+                <link rel="stylesheet" href="../styles.css"/>
+
+        </head>
+
+
+<body>
+<div class="placeholder">
+        <br/>
+
+        <!--dark-mode-button-->
+        <div class ="buttonSytle">
+                <button onclick ="lightmodeFun()" id="uniqueButton" type="button">dark|light</button>
+        </div>
+</div>
+<br/><br/>
+
+
+<div class="projects">
+        <a style="font-size:16px;"href="../public/projects.html">back</a>
+<br/> <br/>
+	<a href="https://github.com/seve05/ask-llm-script">link -></a>
+</div>
+<br/>
+
+<br/>
+<div class="microscope">
+        <h2 id="mic">Verlustfreie Darstellung von Signalen - Ein Sonntagsbeweis
+</h2>
+        <p>Annahme:
+	Für eine Frequenz B (z.b. 4hz) größer Frequenz A (z.B. 2Hz) ist es der Fall, dass alle "Ausschläge" auch in B sind, falls B durch A ohne Rest teilbar ist.<br>
+	Wir Stellen Frequenzen nicht als kontinuierliche Welle dar sondern als Impulse pro Sekunde in Hertz.<br>
+	Jede grade oder ungrade Zahl * 2 ist in dem Produkt B enthalten.<br> Somit brauchen wir zwei mal die Grenzfrequenz um alle Information in
+	dem hörbaren Frequenzbereich aufzuzeichnen.<br>
+
+Frequenzen A und B müssen zum selben Zeitpunkt T = 0 beginnen, um räumliche Ausbreitung des Schalles gleichzusetzen.
+</p>
+<p>mit N\0 = [1,2,3,...] <br>
+Induktionsanfang : N = 1        A = 1Hz , B = 2Hz <br>
+A= 1Hz/1Sekunde = 1 Ausschläge bei Position T = 0, <br>
+B= 2hz/1Sekunde = 2 Ausschläge bei Positionen T = 0, T = 0.5, somit ist Informationsgehalt von A in B enthalten.<br>
+
+Induktionsschritt : N+1= 2      A= 2Hz, B=4Hz : <br>
+A= 2Hz/1Sekunde = 2 Ausschläge bei Position T = 0, T = 0.5 <br>
+B= 4hz/1Sekunde = 2 Ausschläge bei Positionen T = 0, T = 0.25, T= 0.5, T= 0.75 somit ist Informationsgehalt von A in B enthalten.<br>
+
+Es gilt also, dass bei doppelter Frequenz B der Informationsgehalt dieser Frequenz den Informationsgehalt von A umfasst. <br>
+
+Somit muss noch bewiesen werden, dass es keinen Faktor kleiner 2 gibt, der den Informationsgehalt einer Frequenz vollständig darstellen kann.</p>
+<p>B muss ohne Rest durch die Frequenz A teilbar sein, um alle Impulse bei gleicher Position darzustellen.<br>
+Durch die Existenz von Primzahlen können wir schließen, dass es keine Frequenz kleiner dem Faktor 2 von A geben kann,<br> die für alle
+Frequenzen: (A-1, A-2, ..., A-n) die Voraussetzung erfüllen kann, da Primzahlen nur durch sich selbst und 1 teilbar sind,<br>
+wir also bei einer Primzahl keinen Faktor kleiner 2 finden könnnen, der die Primzahl durch einen anderen Wert als sich selbst<br>
+als Produkt dieser Primzahl darstellen lässt und ohne Rest teilbar ist.<br>
+Dies lässt sich durch den folgenden simplen Existenzbeweis festellen:<br>
+Unabhängig von der Frequenz A werden wir bei (A-1, A-2,..., A-n) auf A=5 subtrahieren und somit eine Primzahl erreichen.
+</p>
+        <br/>
+        <br/>
+</div>
+<br/>
+
+<br/><br/>
+<p id="sent" style="width:70%; margin-left:25%;" class="form_field"></p>
+<img id="gendImg" class="form_field" >
+<!-- Server side generated image in here UPDATE: ill rather provide a download 
+because of the security implications as of right now it would be hosted locally-->
+<!--<img class="form_field" id="generatedImage" src="">-->
+<br/><br/>
+<hr id = "prohr"/>
+<br/>
+<footer id ="foot">© 2026 Severin Richter</footer>
+</body>
+
+
+
+
+
+<!-- dark(light) mode script in local html-->
+<script>
+function lightmodeFun() {
+   var element = document.body;
+   element.classList.toggle("light-mode");
+        }
+</script>
+
+
+</html>
