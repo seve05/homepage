@@ -5,7 +5,14 @@ body{
 	color: #dde3ed;
 	font-family: "Verdana", monospace;
 }
-
+#image-container_two {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    align-items: center; /* Center the images vertically if needed */
+    gap: 15px; /* Optional: Add some space between images */
+    max-width: 50%; /* Ensure the container does not exceed the width of its parent */
+    flex-wrap: wrap; /* Allow images to wrap if necessary */
+}
 h1{
 	letter-spacing:2px;
 }
@@ -281,7 +288,14 @@ position:relative;
 
 	
 @media (max-width:1000px){
-
+#image-container_two {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    align-items: center; /* Center the images vertically if needed */
+    gap: 15px; /* Optional: Add some space between images */
+    max-width: 50%; /* Ensure the container does not exceed the width of its parent */
+    flex-wrap: wrap; /* Allow images to wrap if necessary */
+}
 .description{
 	margin-right:10%;
 	margin-left:10%;
@@ -385,7 +399,14 @@ position:relative;
 }
 
 @media (min-width:1921px){
-
+#image-container_two {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    align-items: center; /* Center the images vertically if needed */
+    gap: 15px; /* Optional: Add some space between images */
+    max-width: 50%; /* Ensure the container does not exceed the width of its parent */
+    flex-wrap: wrap; /* Allow images to wrap if necessary */
+}
 .description{
 	margin-right:40%;
 	margin-left:30%;
@@ -493,14 +514,7 @@ max-width:40%
 		
 }
 }
-#image-container_two {
-    display: flex;
-    justify-content: center; /* Center the images horizontally */
-    align-items: center; /* Center the images vertically if needed */
-    gap: 15px; /* Optional: Add some space between images */
-    max-width: 50%; /* Ensure the container does not exceed the width of its parent */
-    flex-wrap: wrap; /* Allow images to wrap if necessary */
-}
+
 #image-container {
     display: flex;
     justify-content: center; /* Center the images horizontally */
@@ -515,12 +529,27 @@ max-width:40%
     height: auto; /* Maintain aspect ratio */
     margin: 0; /* Remove any margin that might affect layout */
 }
-
+#image-container_two {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    align-items: center; /* Center the images vertically if needed */
+    gap: 15px; /* Optional: Add some space between images */
+    max-width: 50%; /* Ensure the container does not exceed the width of its parent */
+    flex-wrap: wrap; /* Allow images to wrap if necessary */
+}
 @media (max-width: 1500px) { /* Adjust the max-width as needed */
     #image-container {
         margin-left: 10%; /* Add margin on the left */
         margin-right: 10%; /* Add margin on the right */
     }
+	#image-container_two {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    align-items: center; /* Center the images vertically if needed */
+    gap: 15px; /* Optional: Add some space between images */
+    max-width: 50%; /* Ensure the container does not exceed the width of its parent */
+    flex-wrap: wrap; /* Allow images to wrap if necessary */
+}
     #image-container img {
         transform: scale(0.9); /* Scale down the images */
     }
