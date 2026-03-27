@@ -493,6 +493,14 @@ max-width:40%
 		
 }
 }
+#image-container_two {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    align-items: center; /* Center the images vertically if needed */
+    gap: 15px; /* Optional: Add some space between images */
+    max-width: 50%; /* Ensure the container does not exceed the width of its parent */
+    flex-wrap: wrap; /* Allow images to wrap if necessary */
+}
 #image-container {
     display: flex;
     justify-content: center; /* Center the images horizontally */
