@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Wie groß ist eigentlich 32 KB ?</title>
+                <link rel="stylesheet" href="../styles.css"/>
+
+        </head>
+
+
+<body>
+<div class="placeholder">
+        <br/>
+
+        <!--dark-mode-button-->
+        <div class ="buttonSytle">
+                <button onclick ="lightmodeFun()" id="uniqueButton" type="button">dark|light</button>
+        </div>
+</div>
+<br/><br/>
+
+<br/>
+<div class="microscope">
+        <h2 id="mic">Nintendo Gameboy 32KB Cartridge - Wieviel Platz ist das eigentlich ?</h2>
+    <p><br>32.000 Bytes = 256.000 Bits 
+<br>-> ASCII mit ca 8 Bit / char
+<br>1 Wort (z.B. mein Name) ~ 7 Zeichen + 1 Leerzeichen = 8 Bit, wie praktisch.
+<br>1 Satz ~ 10 Wörter = 640 Bits/Satz
+<br>1 Seite = 40 Zeilen = 25.600 Bits/Seite 
+<br>
+Also kann man, wenn man grob schätzt und überschlägt sagen, dass 
+<br>auf ein 32KB Speichermodul ca 10 Seiten A4 ASCII kodierter Klartext passt.
+</p>
+<p>
+Speicherkomplexität und Kompression: <br>
+<br>Wie können z.B. statt jedes Buchstabens in ASCII nur die individuellen Wörter speichern, 
+<br>um Wiederholungen zu vermeiden. Dann haben wir Zeiger, die zu den Speicheradressen der Wörter zeigen.
+<br>Also eine Reihe von Zeigern (pointers).
+<br>
+<br>Unsere Pointer anstelle von Wörtern: [*0x07],[*0x0C],[*0x00], ...
+<br>Individuelle Wörter im Speicher: [0x00-0x04]="sehr" [0x04-0x07]="ist" [0x7-0x0A]="ich" [0x0A-0x0C]="du" [0x0C-0F]="bin"  ...
+<br>
+<br>Vorher haben wir jedes Wort n-mal mit n-Zeichen gespeichert, also eine Speicherkomplexität von O(n^2).
+<br>Jetzt speichern wir nur die Zugriffe auf ein individuelles Wort plus die individuellen Wörter, 
+<br>also z.B. n*n*0,1 individuelle Wörter, wenn wir mal annehmen, dass wir bei 1000 Wörtern 100 individuelle Wörter haben. 
+<br>Zeiger an sich brauchen auch Speicher. 2 Bytes damals und in C heute 4-8Byte, abhängig von der Zielarchitektur.
+<br>
+<br>Man kann also von einer linearen Reduzierung der Größe der Speicheranforderung ausgehen, abhängig 
+<br>vom Informationsgehalt des Originaltextes. Bei hohem Informationsgehalt wird es auf einem geringergen
+<br>Faktor hinauslaufen.
+<br>
+<br>Fazit: 
+<br>Aus 10 A4 Seiten Text werden in unserem optimistischen Beispiel 100 Seiten A4 Text die 
+<br>auf eine 32KB Speicherkarte passen und was die Programmierer des originalen Gameboy Systems 
+<br>zur Verfügung hatten um ganze Spiele aufzuschreiben. 
+<br>Wenn man einen realistischeren Faktor, z.b. das Mittel der Spanne 1:2-1:8 , dannt kommen wir eher auf ~50 Seiten.
+
+
+</p>
+        <br/>
+        <br/>
+</div>
+<br/>
+
+<br/><br/>
+<p id="sent" style="width:70%; margin-left:25%;" class="form_field"></p>
+<img id="gendImg" class="form_field" >
+<!-- Server side generated image in here UPDATE: ill rather provide a download 
+because of the security implications as of right now it would be hosted locally-->
+<!--<img class="form_field" id="generatedImage" src="">-->
+<br/><br/>
+<hr id = "prohr"/>
+<br/>
+<footer id ="foot">© 2026 Severin Richter</footer>
+</body>
+
+
+
+
+
+<!-- dark(light) mode script in local html-->
+<script>
+function lightmodeFun() {
+   var element = document.body;
+   element.classList.toggle("light-mode");
+        }
+</script>
+
+
+</html>
