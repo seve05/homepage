@@ -38,7 +38,7 @@ Also kann man, wenn man grob schätzt und überschlägt sagen, dass
 </p>
 <p>
 Speicherkomplexität und Kompression: <br>
-<br>Wie können z.B. statt jedes Buchstabens in ASCII nur die individuellen Wörter speichern, 
+<br>Wir können z.B. statt jedes Buchstabens in ASCII nur die individuellen Wörter speichern, 
 <br>um Wiederholungen zu vermeiden. Dann haben wir Zeiger, die zu den Speicheradressen der Wörter zeigen. Also eine Reihe von Zeigern (pointers).
 <br>
 <br>Unsere Pointer anstelle von Wörtern: [*0x07],[*0x0C],[*0x00], ...
@@ -46,7 +46,7 @@ Speicherkomplexität und Kompression: <br>
 <br>
 <br>Vorher haben wir jedes Wort mit n-Zeichen gespeichert, also eine Speicherkomplexität von O(n), mit durchschnittlicher Wortlänge von L, also n*L.
 <br>Jetzt speichern wir nur die Zugriffe auf ein individuelles Wort plus die individuellen Wörter, 
-<br>also z.B. n*0,1 individuelle Wörter, wenn wir mal annehmen, dass wir bei 1000 Wörtern 100 individuelle Wörter haben. 
+<br>also z.B. n*0,1L individuelle Wörter, wenn wir mal annehmen, dass wir bei 1000 Wörtern 100 individuelle Wörter haben. 
 <br>Zeiger an sich brauchen auch Speicher. 2 Bytes damals und in C heute 4-8Bytes, abhängig von der Zielarchitektur.
 <br>
 <br>Man kann also von einer linearen Reduzierung der Größe der Speicheranforderung ausgehen, abhängig 
