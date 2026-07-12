@@ -48,7 +48,7 @@ Speicherkomplexität und Kompression: <br>
 <br>Jetzt speichern wir nur die Zugriffe auf ein individuelles Wort plus die individuellen Wörter, 
 <br>also z.B. n*L*0,1 (wieder auf die Zeichen bezogen), wenn es 100 individuelle Wörter bei 1000 Wörtern gibt. 
 <br>Zeiger an sich brauchen auch Speicher. 2 Bytes damals und in C heute 4-8Bytes, abhängig von der Zielarchitektur.
-<br>Also sind wir schon bei O(n*L*0,1+n*Z) mit Z als Größe der Zeiger in Bytes.
+<br>Also sind wir schon bei O(n*L*0,1+n*Z) mit Z als Größe der Zeiger in Bytes wenn wir mal Konstanten und Faktoren lassen.
 <br>
 <br>Man kann grob von einer linearen Reduzierung der Größe der Speicheranforderung ausgehen, abhängig 
 <br>vom Informationsgehalt des Originaltextes. Bei hohem Informationsgehalt wird es auf einem geringergen Faktor hinauslaufen.
