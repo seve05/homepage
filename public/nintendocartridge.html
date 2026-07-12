@@ -46,7 +46,7 @@ Speicherkomplexität und Kompression: <br>
 <br>
 <br>Vorher haben wir jedes Wort n-mal gespeichert, also eine Speicherkomplexität von O(n*L) für die Zeichen, mit durchschnittlicher Wortlänge von L.
 <br>Jetzt speichern wir nur die Zugriffe auf ein individuelles Wort plus die individuellen Wörter, 
-<br>also z.B. n*L*0,1 wenn es 100 individuelle Wörter bei 1000 Wörtern gibt. 
+<br>also z.B. n*L*0,1 (wieder auf die Zeichen bezogen), wenn es 100 individuelle Wörter bei 1000 Wörtern gibt. 
 <br>Zeiger an sich brauchen auch Speicher. 2 Bytes damals und in C heute 4-8Bytes, abhängig von der Zielarchitektur.
 <br>
 <br>Man kann also von einer linearen Reduzierung der Größe der Speicheranforderung ausgehen, abhängig 
