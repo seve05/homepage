@@ -44,9 +44,9 @@ Speicherkomplexität und Kompression: <br>
 <br>Unsere Pointer anstelle von Wörtern: [*0x07],[*0x0C],[*0x00], ...
 <br>Individuelle Wörter im Speicher: [0x00-0x04]="sehr" [0x04-0x07]="ist" [0x7-0x0A]="ich" [0x0A-0x0C]="du" [0x0C-0F]="bin"  ...
 <br>
-<br>Vorher haben wir jedes Wort mit n-Zeichen gespeichert, also eine Speicherkomplexität von O(n), mit durchschnittlicher Wortlänge von L, also n*L.
+<br>Vorher haben wir jedes Wort mit n-Zeichen gespeichert, also eine Speicherkomplexität von O(n) für die Zeichen, mit durchschnittlicher Wortlänge von L, also n*L.
 <br>Jetzt speichern wir nur die Zugriffe auf ein individuelles Wort plus die individuellen Wörter, 
-<br>also z.B. n*0,1L individuelle Wörter, wenn wir mal annehmen, dass wir bei 1000 Wörtern 100 individuelle Wörter haben. 
+<br>also z.B. n*0,1L individuelle Wörter, wenn wir mal annehmen, dass wir bei 1000 Wörtern 100 individuelle Wörter haben, also eine Reduktion von 10x. 
 <br>Zeiger an sich brauchen auch Speicher. 2 Bytes damals und in C heute 4-8Bytes, abhängig von der Zielarchitektur.
 <br>
 <br>Man kann also von einer linearen Reduzierung der Größe der Speicheranforderung ausgehen, abhängig 
@@ -55,7 +55,7 @@ Speicherkomplexität und Kompression: <br>
 <br>Fazit: 
 <br>Aus 10 A4 Seiten Text werden in unserem optimistischen Beispiel 100 Seiten A4 Text die 
 <br>auf eine 32KB Speicherkarte passen und was die Programmierer des originalen Gameboy Systems 
-<br>zur Verfügung hatten um ganze Spiele aufzuschreiben. 
+<br>zur Verfügung hatten um ganze Spiele aufzuschreiben, wenn man den Speicherplatz der Pointer außer Acht lässt. 
 <br>Wenn man einen realistischeren Faktor, z.b. das Mittel der Spanne 1:2-1:8 nimmt , dann kommen wir eher auf ~50 Seiten.
 </p>
 03/2026
